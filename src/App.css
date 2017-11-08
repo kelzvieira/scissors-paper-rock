@@ -6,8 +6,7 @@
 .App-header {
   background-color: #8d2edb;
   background: url('https://maxoffsky.com/word/wp-content/uploads/2014/04/andreasbg.png') center no-repeat;
-  height: 150px;
-  padding: 50px;
+  padding: 70px 50px;
   margin: auto;
   color: white;
 }
@@ -23,6 +22,27 @@
   display: inline-block;
   padding: 20px;
   cursor: pointer;
+  position: relative;
+}
+
+.icon-text {
+  display: none;
+  font-size: 25px;
+  font-family: 'Viga';
+  color: #fff;
+  background: #DE4A99;
+  border: 1px solid #DE4A99;
+  padding: 10px 20px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #722A71;
+  -webkit-box-shadow: 1px 1px 1px #722A71;
+  -moz-box-shadow: 1px 1px 1px #722A71;
+  position: absolute;
+  z-index: 1;
+}
+
+.icon:hover .icon-text {
+  display: block;
 }
 
 .options {
@@ -31,14 +51,59 @@
   width: 100%;
 }
 
+.weapons {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px #fff solid;
+  margin: auto;
+  max-width: 300px;
+}
+
 h1 {
   font-size: 30px;
   font-family: 'Pacifico', cursive;
 }
 
-.result {
-  padding: 50px;
+.result-inner {
+  padding: 25px;
+  display: inline-block;
+}
 
+.result-header {
+  width: 100%;
+  background: #5d0487;
+  color: #fff;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  font-family: 'Viga';
+  padding: 10px 0px;
+}
+
+.result-container {
+  text-align: center;
+  align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.result-text {
+  font-size: 35px;
+  font-family: 'Viga';
+  text-align: center;
+}
+
+.result-announcement {
+  width: 100%;
+}
+
+.user-result {
+  float: left;
+}
+
+.computer-result {
+  float: right;
 }
 
 h2 {

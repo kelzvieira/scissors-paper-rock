@@ -15,6 +15,7 @@ class Icon extends Component {
     return (
         <div className='icon' icon={this.props.iconId} onClick={this.handleHandIcon}>
           {this.props.icon}
+          <div className='icon-text'>{this.props.iconId}</div>
         </div>
     )
   }

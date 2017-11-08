@@ -6,9 +6,9 @@ class User extends Component {
   }
   render() {
     return (
-      <div class='result'>
-        <h2>Your's Choice:</h2>
-        <div class='icon'>{this.props.icon}</div>
+      <div class='result-inner'>
+        <h2>Your Choice:</h2>
+        <div className='result-text'>{this.props.userChoice}</div>
       </div>
     )
   }

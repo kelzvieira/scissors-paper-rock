@@ -6,9 +6,9 @@ class Computer extends Component {
   }
   render() {
     return (
-      <div class='result'>
+      <div class='result-inner'>
         <h2>Computer's Choice:</h2>
-        <div class='icon'>{this.props.icon}</div>
+        <div className='result-text'>{this.props.computerChoice}</div>
       </div>
     )
   }

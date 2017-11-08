@@ -15,26 +15,16 @@ class App extends Component {
       matchOutcome: [],
       numberOfMatches: 0
     }
-    this.handleUserChoice = this.handleUserChoice.bind(this)
+    this.userChoice = this.userChoice.bind(this)
     this.computerChoice = this.computerChoice.bind(this)
+    this.handleMatchResult = this.handleMatchResult.bind(this)
   }
 
-  handleUserChoice(icon) {
+  userChoice(icon) {
     this.state.userChoices.push(icon)
-    this.computerChoice()
-
     this.setState({
-      userChoices: this.state.userChoices,
-      numberOfMatches: this.state.numberOfMatches +1
+      userChoices: this.state.userChoices
     })
-    if (icon == 'scissors') {
-      console.log("User picked Scissors")
-    } else if (icon == 'paper') {
-      console.log("User picked Paper")
-    } else {
-      console.log("User picked Rock")
-    }
-    console.log(this.state.userChoices)
   }
 
   computerChoice() {
@@ -49,24 +39,54 @@ class App extends Component {
     this.setState({
       computerChoices: this.state.computerChoices
     })
-    console.log(this.state.computerChoices)
+  }
+
+  handleMatchResult(icon) {
+    this.userChoice(icon)
+    this.computerChoice()
+
+    if (this.state.userChoices[this.state.numberOfMatches] === 'scissors') {
+      if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
+        this.state.matchOutcome.push('tie')
+      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
+        this.state.matchOutcome.push('computer wins')
+      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
+        this.state.matchOutcome.push('user wins')
+      } else {
+        return 'Whoops, something went wrong.'
+      }
+    } else if (this.state.userChoices[this.state.numberOfMatches] === 'paper') {
+      if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
+        this.state.matchOutcome.push('tie')
+      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
+        this.state.matchOutcome.push('computer wins')
+      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
+        this.state.matchOutcome.push('user wins')
+      } else {
+        return 'Whoops, something went wrong.'
+      }
+    } else if (this.state.userChoices[this.state.numberOfMatches] === 'rock') {
+      if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
+        this.state.matchOutcome.push('tie')
+      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
+        this.state.matchOutcome.push('computer wins')
+      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
+        this.state.matchOutcome.push('you win')
+      } else {
+        return 'Whoops, something went wrong.'
+      }
+    } else {
+      return 'Whoops, something went wrong.'
+    }
+    this.setState({
+      numberOfMatches: this.state.numberOfMatches +1
+    })
   }
 
   render() {
     return (
 
-      /* Recreate the classic game of chance; Rock, Paper, Scissors!
-      It's User vs Computer, and only the luckiest will survive.
-
-      Requirements:
-
-      Display a selection of three choices: Rock, Paper or Scissors
-      Allow the User to select a choice
-      Generate a random choice for the Computer
-      Compare the User and Computer choice to declare a winner
-      Allow the User to play again without refreshing the page
-
-      Bonus Requirements:
+      /* Bonus Requirements:
 
       Track the results of each game
       Display how many times the User and Computer have won
@@ -76,15 +96,17 @@ class App extends Component {
         <div className='options'>
           <div className='App-header'>
             <h1 className='App-title'>Choose your weapon:</h1>
+            <div className='weapons'>
+              <Icon iconId='scissors' icon='✌️' onChoose={this.handleMatchResult}/>
+              <Icon iconId='paper' icon='🖐' onChoose={this.handleMatchResult}/>
+              <Icon iconId='rock' icon='👊' onChoose={this.handleMatchResult}/>
+            </div>
           </div>
-            <Icon iconId='scissors' icon='✌️' onChoose={this.handleUserChoice}/>
-            <Icon iconId='paper' icon='🖐' onChoose={this.handleUserChoice}/>
-            <Icon iconId='rock' icon='👊' onChoose={this.handleUserChoice}/>
         </div>
-        <div className='result'>
-          <User userChoice={this.state.userChoices[this.state.numberOFMatches + 1]}/>
-          <Computer computerChoice={this.state.computerChoices[this.state.numberOFMatches + 1]}/>
-          <Result matchOutcome={this.state.matchOutcome[this.state.numberOFMatches + 1]}/>
+        <div className='result-container'>
+          <User userChoice={this.state.userChoices[this.state.userChoices.length -1]}/>
+          <Computer computerChoice={this.state.computerChoices[this.state.computerChoices.length -1]}/>
+          <Result matchOutcome={this.state.matchOutcome[this.state.matchOutcome.length -1]}/>
         </div>
       </div>
     );

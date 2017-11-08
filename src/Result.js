@@ -6,9 +6,9 @@ class Result extends Component {
   }
   render() {
     return (
-      <div class='result'>
-        <h2>And the winner is:</h2>
-        <div class='icon'>{this.props.icon}</div>
+      <div class='result-announcement'>
+        <div className='result-header'>And the winner is:</div>
+        <div class='icon'>{this.props.matchOutcome}</div>
       </div>
     )
   }
