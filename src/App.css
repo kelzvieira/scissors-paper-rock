@@ -1,0 +1,50 @@
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #8d2edb;
+  background: url('https://maxoffsky.com/word/wp-content/uploads/2014/04/andreasbg.png') center no-repeat;
+  height: 150px;
+  padding: 50px;
+  margin: auto;
+  color: white;
+}
+
+.App-title {
+  font-size: 3em;
+  line-height: 1.1;
+  text-shadow: #5d0487 2px 2px;
+}
+
+.icon {
+  font-size: 50px;
+  display: inline-block;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.options {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+h1 {
+  font-size: 30px;
+  font-family: 'Pacifico', cursive;
+}
+
+.result {
+  padding: 50px;
+
+}
+
+h2 {
+  color: #5d0487;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Viga';
+}
