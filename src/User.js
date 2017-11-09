@@ -7,7 +7,7 @@ class User extends Component {
   render() {
     return (
       <div class='result-inner'>
-        <h2>Your Choice:</h2>
+        <h3>Your Choice:</h3>
         <div className='result-text'>{this.props.userChoice}</div>
       </div>
     )

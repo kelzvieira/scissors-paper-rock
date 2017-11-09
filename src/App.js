@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       computerChoices: [],
       userChoices: [],
-      matchOutcome: [],
+      matchOutcomes: [],
       numberOfMatches: 0
     }
     this.userChoice = this.userChoice.bind(this)
@@ -31,9 +31,9 @@ class App extends Component {
     const randomNumber = Math.floor(Math.random()*3+1)
     if (randomNumber === 1) {
       this.state.computerChoices.push('scissors')
-    }  else if (randomNumber === 2) {
+      }  else if (randomNumber === 2) {
       this.state.computerChoices.push('paper')
-    } else {
+      } else {
       this.state.computerChoices.push('rock')
     }
     this.setState({
@@ -47,40 +47,49 @@ class App extends Component {
 
     if (this.state.userChoices[this.state.numberOfMatches] === 'scissors') {
       if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
-        this.state.matchOutcome.push('tie')
-      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
-        this.state.matchOutcome.push('computer wins')
-      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
-        this.state.matchOutcome.push('user wins')
-      } else {
+        this.state.matchOutcomes.push('tie')
+        } else if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
+        this.state.matchOutcomes.push('computer wins')
+        } else if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
+        this.state.matchOutcomes.push('user wins')
+        } else {
         return 'Whoops, something went wrong.'
       }
     } else if (this.state.userChoices[this.state.numberOfMatches] === 'paper') {
       if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
-        this.state.matchOutcome.push('tie')
-      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
-        this.state.matchOutcome.push('computer wins')
-      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
-        this.state.matchOutcome.push('user wins')
-      } else {
+        this.state.matchOutcomes.push('tie')
+        } else if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
+        this.state.matchOutcomes.push('computer wins')
+        } else if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
+        this.state.matchOutcomes.push('user wins')
+        } else {
         return 'Whoops, something went wrong.'
-      }
-    } else if (this.state.userChoices[this.state.numberOfMatches] === 'rock') {
+        }
+      } else if (this.state.userChoices[this.state.numberOfMatches] === 'rock') {
       if (this.state.computerChoices[this.state.numberOfMatches] === 'rock') {
-        this.state.matchOutcome.push('tie')
-      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
-        this.state.matchOutcome.push('computer wins')
-      } else if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
-        this.state.matchOutcome.push('you win')
-      } else {
+        this.state.matchOutcomes.push('tie')
+        } else if (this.state.computerChoices[this.state.numberOfMatches] === 'paper') {
+        this.state.matchOutcomes.push('computer wins')
+        } else if (this.state.computerChoices[this.state.numberOfMatches] === 'scissors') {
+        this.state.matchOutcomes.push('user wins')
+        } else {
         return 'Whoops, something went wrong.'
       }
-    } else {
+      } else {
       return 'Whoops, something went wrong.'
     }
     this.setState({
       numberOfMatches: this.state.numberOfMatches +1
     })
+    this.checkFirstGame()
+  }
+
+  checkFirstGame() {
+    if (this.state.matchOutcomes.length === 0) {
+    document.getElementById('results-display').className = 'result-container-first'
+    } else {
+    document.getElementById('results-display').className = 'result-container'
+    }
   }
 
   render() {
@@ -93,7 +102,7 @@ class App extends Component {
       Add a high score for the User's highest winning streak. */
 
       <div>
-        <div className='options'>
+        <div className='header-container'>
           <div className='App-header'>
             <h1 className='App-title'>Choose your weapon:</h1>
             <div className='weapons'>
@@ -103,10 +112,11 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div className='result-container'>
+        <div id='results-display' className='result-container-first'>
           <User userChoice={this.state.userChoices[this.state.userChoices.length -1]}/>
           <Computer computerChoice={this.state.computerChoices[this.state.computerChoices.length -1]}/>
-          <Result matchOutcome={this.state.matchOutcome[this.state.matchOutcome.length -1]}/>
+          <Result matchOutcome={this.state.matchOutcomes[this.state.matchOutcomes.length -1]}/>
+          <Scoreboard matchOutcomes={this.state.matchOutcomes}/>
         </div>
       </div>
     );
